@@ -1,6 +1,6 @@
 import 'mocha';
 import {assert} from 'chai';
-import * as hellomod from '../lib/hellomod';
+import * as hellomod from '../src/lib/hellomod';
 
 describe("hellomod", () => {
     it("should return a greeting", (done) => {

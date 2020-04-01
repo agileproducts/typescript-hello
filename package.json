@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha"
+    "start": "node built/src/app.js",
+    "test": "mocha --exit"
   },
   "author": "SC",
   "license": "ISC",
@@ -15,8 +16,12 @@
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
     "mocha": "^7.1.1",
+    "supertest": "^4.0.2",
     "ts-mocha": "^7.0.0",
     "typescript": "^3.8.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/node": "^13.9.8",
+    "express": "^4.17.1"
+  }
 }
