@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node built/src/app.js",
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "build-ts": "tsc",
+    "build": "npm run build-ts"
   },
   "author": "SC",
   "license": "ISC",

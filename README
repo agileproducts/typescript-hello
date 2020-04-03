@@ -1,3 +1,9 @@
-# Typescript Hello
+#Typescript Hello
 
-Basic typescript template app.
+Basic typescript template/learning app.
+
+`npm run build`
+
+`npm test`
+
+`npm start`
