@@ -3,6 +3,11 @@ import path from "path";
 
 const app = express();
 
+function formHandler(req, res, next) {
+    console.log(req.body);
+    next();
+};
+
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", 'ejs');
 app.use(express.urlencoded({extended:true}));
@@ -17,12 +22,11 @@ app.get("/form", (req, res) => {
     res.render("form");
 });
 
-app.post("/form-handler", (req,res) => {
-    console.log(req.body);
+app.post("/form-handler", formHandler, (req,res) => {
     res.redirect(303, "/form-receipt");
 });
 
-app.get("/form-receipt", (req,res) => {
+app.get("/form-receipt", (req, res) => {
     res.status(200);
     res.render("form-receipt");
 });
