@@ -17,8 +17,14 @@ app.get("/form", (req, res) => {
     res.render("form");
 });
 
-app.post("/form", (req,res) => {
-    res.status(200).json(req.body);
+app.post("/form-handler", (req,res) => {
+    console.log(req.body);
+    res.redirect(303, "/form-receipt");
+});
+
+app.get("/form-receipt", (req,res) => {
+    res.status(200);
+    res.render("form-receipt");
 });
 
 const port = process.env.PORT || 3000;
