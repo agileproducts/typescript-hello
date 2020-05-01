@@ -1,8 +1,9 @@
-export function contact(inputData) {
+export function contact(inputData, callback) {
     if(emailIsValid(inputData.email)) {
-        return "hello";
+        callback(null, "hello");
+        // should be some stuff for creating a contact
     } else {
-        throw new Error("Not a valid email address");
+        callback(Error("Not a valid email address"), null);
     }
 }
 

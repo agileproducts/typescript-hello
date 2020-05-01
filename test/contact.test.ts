@@ -5,13 +5,16 @@ import {contact} from "../src/lib/contact";
 describe("contact", () => {
     it("should return hello", (done) => {
         let validContact = { email : "bob@example.com"};
-        assert.equal(contact(validContact),"hello");
-        done();
+        contact(validContact, (err,contact) => {
+            assert.equal(contact,"hello");
+            done();
+        });
     });
-    it("should throw an error for an invalid email", () => {
+    it("should return an error for an invalid email", (done) => {
         let invalidContact = { email : "justastring"};
-        assert.throws(() => {
-            contact(invalidContact);
-        }, "Not a valid email address");           
-    })
+        contact(invalidContact, (err,contact) => {
+            assert.equal(err.message,"Not a valid email address");
+            done();
+        });
+    });
 });

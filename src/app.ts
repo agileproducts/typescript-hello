@@ -23,15 +23,16 @@ app.get("/form", (req, res) => {
     res.render("form");
 });
 
-app.post("/form-handler", (req,res) => {
-    try {
-        contact(req.body);
-        res.redirect(303, "/form-receipt");
-    }
-    catch(error) {
-        console.log(error.message);
-        res.redirect(303, "/form");
-    }
+app.post("/form-handler", (req, res) => {
+    contact(req.body, (err, contact) => {
+        if(err) {
+            console.log(err.message);
+            res.redirect(303, "/form");
+        } else {
+            console.log(contact);
+            res.redirect(303, "/form-receipt");
+        }
+    });
 });
 
 app.get("/form-receipt", (req, res) => {
