@@ -29,6 +29,15 @@ describe("POST /form-handler", () => {
             })
             .expect(303,done);
     });
+    it("should show an error if an email is not supplied", (done) => {
+        request(app)
+            .post("/form-handler")
+            .send("email=")
+            .expect((res) => {
+                assert.equal(res.header['location'], "/form");
+            })
+            .expect(303,done);
+    });
 });
 
 describe("GET /form-receipt", () => {

@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import {contact} from "./lib/contact";
 
 const app = express();
 
@@ -22,8 +23,15 @@ app.get("/form", (req, res) => {
     res.render("form");
 });
 
-app.post("/form-handler", formHandler, (req,res) => {
-    res.redirect(303, "/form-receipt");
+app.post("/form-handler", (req,res) => {
+    try {
+        contact(req.body);
+        res.redirect(303, "/form-receipt");
+    }
+    catch(error) {
+        console.log(error.message);
+        res.redirect(303, "/form");
+    }
 });
 
 app.get("/form-receipt", (req, res) => {
