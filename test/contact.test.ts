@@ -3,10 +3,10 @@ import {assert} from "chai";
 import {contact} from "../src/lib/contact";
 
 describe("contact", () => {
-    it("should return hello", (done) => {
+    it("should return a valid contact", (done) => {
         let validContact = { email : "bob@example.com"};
         contact(validContact, (err,contact) => {
-            assert.equal(contact,"hello");
+            assert.deepEqual(contact,validContact);
             done();
         });
     });
