@@ -1,44 +1,20 @@
 import express from "express";
 import path from "path";
-import {contact} from "./lib/contact";
+
+//Controllers (route handlers)
+import * as homeController from "./controllers/home"
+import * as formController from "./controllers/form"
 
 const app = express();
-
-function formHandler(req, res, next) {
-    console.log(req.body);
-    next();
-};
 
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", 'ejs');
 app.use(express.urlencoded({extended:true}));
 
-app.get("/", (req, res) => {
-    res.status(200);
-    res.render("home");
-});
-
-app.get("/form", (req, res) => {
-    res.status(200);
-    res.render("form");
-});
-
-app.post("/form-handler", (req, res) => {
-    contact(req.body, (err, contact) => {
-        if(err) {
-            console.log(err.message);
-            res.redirect(303, "/form");
-        } else {
-            console.log(contact);
-            res.redirect(303, "/form-receipt");
-        }
-    });
-});
-
-app.get("/form-receipt", (req, res) => {
-    res.status(200);
-    res.render("form-receipt");
-});
+app.get("/", homeController.index);
+app.get("/form", formController.index);
+app.post("/form-handler", formController.handler);
+app.get("/form-receipt", formController.receipt);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
