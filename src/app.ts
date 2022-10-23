@@ -4,6 +4,7 @@ import path from "path";
 //Controllers (route handlers)
 import * as homeController from "./controllers/home"
 import * as formController from "./controllers/form"
+import * as fileUploadController from "./controllers/fileupload"
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.get("/", homeController.index);
 app.get("/form", formController.index);
 app.post("/form-handler", formController.handler);
 app.get("/form-receipt", formController.receipt);
+app.get("/fileupload", fileUploadController.index);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
